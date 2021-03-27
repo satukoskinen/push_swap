@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 14:09:13 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 12:05:47 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:31:20 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,6 @@
 #include "libft.h"
 
 void	sort_a(t_stack *a, t_stack *b, int a_size);
-
-int		stack_max(t_stack *stack, int size)
-{
-	int	max;
-	int	i;
-
-	i = 0;
-	max = stack_peek(stack);
-	while (i < size)
-	{
-		if (max < *(stack->top - i))
-			max = *(stack->top - i);
-		i++;
-	}
-	return (max);
-}
-
-int		stack_min(t_stack *stack, int size)
-{
-	int	min;
-	int	i;
-
-	i = 0;
-	min = stack_peek(stack);
-	while (i < size)
-	{
-		if (min > *(stack->top - i))
-			min = *(stack->top - i);
-		i++;
-	}
-	return (min);
-}
 
 int		select_pivot(t_stack *stack, int size)
 {
@@ -71,7 +39,7 @@ void	sort_top(t_stack *stack, int count, int asc, int a)
 {
 	if (count <= 1)
 		return ;
-	if (count == 2 && ((asc && *(stack->top) > *(stack->top - 1))
+	else if (count == 2 && ((asc && *(stack->top) > *(stack->top - 1))
 		|| (!asc && *(stack->top) < *(stack->top - 1))))
 	{
 		stack_swap(stack);
@@ -80,6 +48,10 @@ void	sort_top(t_stack *stack, int count, int asc, int a)
 		else
 			ft_putstr("sb\n");
 	}
+	else if (count == 3 && a)
+		sort_a_three(stack);
+	else if (count == 3 && !a)
+		sort_b_three(stack);
 }
 
 void	sort_b(t_stack *a, t_stack *b, int b_size)
@@ -113,11 +85,11 @@ void	sort_b(t_stack *a, t_stack *b, int b_size)
 		rrb(b);
 		ft_putstr("rrb\n");
 	}
-	if (b_size - a_size > 2)
+	if (b_size - a_size > 3)
 		sort_b(a, b, b_size - a_size);
 	else
 		sort_top(b, b_size - a_size, 0, 0);
-	if (a_size > 2)
+	if (a_size > 3)
 		sort_a(a, b, a_size);
 	else
 		sort_top(a, a_size, 1, 1);
@@ -159,11 +131,11 @@ void	sort_a(t_stack *a, t_stack *b, int a_size)
 		rra(a);
 		ft_putstr("rra\n");
 	}
-	if (a_size - b_size > 2)
+	if (a_size - b_size > 3)
 		sort_a(a, b, a_size - b_size);
 	else
 		sort_top(a, a_size - b_size, 1, 1);
-	if (b_size > 2)
+	if (b_size > 3)
 		sort_b(a, b, b_size);
 	else
 		sort_top(b, b_size, 0, 0);

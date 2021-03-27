@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 20:50:21 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/22 11:03:59 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:33:03 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	execute_instruction(int instruction, t_stack *a, t_stack *b)
 		fptr_2[instruction - 6](a, b);
 }
 
-int			get_checker_instructions(t_stack *a, t_stack *b)
+int			get_checker_instructions(t_stack *a, t_stack *b, int verbose)
 {
 	int			ret;
 	char		*input;
@@ -69,7 +69,8 @@ int			get_checker_instructions(t_stack *a, t_stack *b)
 			break ;
 		execute_instruction(ret, a, b);
 		ft_strdel(&input);
-		print_stacks(a, b);
+		if (verbose)
+			print_stacks(a, b, instructions[ret]);
 	}
 	if (ret != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:12:28 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/23 21:12:19 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 16:48:18 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_stack
 }				t_stack;
 
 t_stack			*stack_new(int capacity);
-t_stack			*stack_push(t_stack *stack, int value);
+t_stack			*stack_push(t_stack **stack, int value);
 int				stack_pop(t_stack *stack);
 int				stack_peek(t_stack *stack);
 void			stack_del(t_stack **stack);

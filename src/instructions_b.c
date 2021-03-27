@@ -6,11 +6,12 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 14:14:36 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/22 14:15:07 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:38:18 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include "libft.h"
 
 void	sb(t_stack *b)
 {

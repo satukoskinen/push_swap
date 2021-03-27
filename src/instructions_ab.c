@@ -6,17 +6,18 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 10:41:23 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/23 21:22:14 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:38:04 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include "libft.h"
 
 void	pa(t_stack *a, t_stack *b)
 {
 	if (!stack_is_empty(b))
 	{
-		stack_push(a, stack_pop(b));
+		stack_push(&a, stack_pop(b));
 	}
 }
 
@@ -24,7 +25,7 @@ void	pb(t_stack *a, t_stack *b)
 {
 	if (!stack_is_empty(a))
 	{
-		stack_push(b, stack_pop(a));
+		stack_push(&b, stack_pop(a));
 	}
 }
 

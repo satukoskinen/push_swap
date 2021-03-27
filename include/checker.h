@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:48:47 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/23 21:28:46 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:38:29 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ enum		e_operation
 }			t_operation;
 
 t_stack		*read_arguments(int argc, char **argv);
-int			get_checker_instructions(t_stack *a, t_stack *b);
+int			get_checker_instructions(t_stack *a, t_stack *b, int verbose);
 int			stack_is_ordered(t_stack *stack, int ascending);
-void		print_stacks(t_stack *a, t_stack *b);
+void		print_stacks(t_stack *a, t_stack *b, char *instruction);
 
 void		sa(t_stack *a);
 void		sb(t_stack *b);

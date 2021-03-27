@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/20 11:01:30 by skoskine          #+#    #+#              #
-#    Updated: 2021/03/26 17:09:45 by skoskine         ###   ########.fr        #
+#    Updated: 2021/03/27 16:24:03 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,14 @@ PUSH_SWAP_SRC = $(STACK_SRC) $(addprefix $(SRC_DIR), \
 	sort_stack.c \
 	stack_bubble_sort.c \
 	stack_quick_sort.c \
+	stack_sort_three.c \
 	instructions_a.c \
 	instructions_b.c \
 	instructions_ab.c \
 	stack_is_ordered.c \
 	print_stacks.c \
+	stack_max.c \
+	stack_min.c \
 )
 
 CHECKER_SRC = $(STACK_SRC) $(addprefix $(SRC_DIR), \

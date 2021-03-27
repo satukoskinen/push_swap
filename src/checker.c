@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:29 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/23 21:28:59 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:36:32 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,38 @@ static int	error(char *msg)
 	return (1);
 }
 
+static void	free_resources(t_stack **a, t_stack **b)
+{
+	stack_del(a);
+	stack_del(b);
+}
+
+static int	check_flags(int *argc, char ***argv)
+{
+	return (0);
+	if (!ft_strcmp(*argv[*argc - 1], "-v"))
+	{
+		*argc = *argc - 1;
+		return (1);
+	}
+	else if (!ft_strcmp(*argv[1], "-v"))
+	{
+		*argc = *argc - 1;
+		*argv = *argv + 1;
+		return (1);
+	}
+	return (0);
+}
+
 int			main(int argc, char **argv)
 {
 	t_stack		*a;
 	t_stack		*b;
+	int			verbose;
 
 	if (argc == 1)
 		return (0);
+	verbose = check_flags(&argc, &argv);
 	if (!(a = read_arguments(argc, argv)))
 		return (error("Error\n"));
 	if (!(b = stack_new(stack_size(a))))
@@ -33,17 +58,15 @@ int			main(int argc, char **argv)
 		stack_del(&a);
 		return (error("Error\n"));
 	}
-	if (!(get_checker_instructions(a, b)))
+	if (!(get_checker_instructions(a, b, verbose)))
 	{
-		stack_del(&a);
-		stack_del(&b);
+		free_resources(&a, &b);
 		return (error("Error\n"));
 	}
 	if (stack_is_empty(b) && stack_is_ordered(a, 1))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
-	stack_del(&a);
-	stack_del(&b);
+	free_resources(&a, &b);
 	return (0);
 }

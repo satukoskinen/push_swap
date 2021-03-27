@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:54:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/23 23:16:27 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 17:38:13 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		parse_line_values(t_stack *stack, char *line)
 		value = ft_atoi(&line[i]);
 		if ((value == 0 && line[i] != '0') || stack_contains(stack, value))
 			return (0);
-		if (!stack_push(stack, value))
+		if (!stack_push(&stack, value))
 			return (0);
 		if (line[i] == '+' || line[i] == '-')
 			i++;
@@ -64,7 +64,7 @@ static t_stack	*reverse_stack(t_stack *stack)
 	}
 	i = 0;
 	while (stack->count > 0)
-		stack_push(new, stack_pop(stack));
+		stack_push(&new, stack_pop(stack));
 	stack_del(&stack);
 	return (new);
 }
@@ -79,7 +79,7 @@ static t_stack	*read_from_file(char *file)
 	line = NULL;
 	if (!(fd = open(file, O_RDONLY)))
 		return (NULL);
-	if (!(stack = stack_new(100)))
+	if (!(stack = stack_new(500)))
 		return (NULL);
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
@@ -116,7 +116,7 @@ t_stack			*read_arguments(int argc, char **argv)
 			stack_del(&stack);
 			return (NULL);
 		}
-		stack_push(stack, value);
+		stack_push(&stack, value);
 		i--;
 	}
 	return (stack);
