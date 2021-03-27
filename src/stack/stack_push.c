@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:38:04 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 16:52:15 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:47:36 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static t_stack	*stack_resize(t_stack **stack)
 		stack_del(stack);
 		return (NULL);
 	}
-	ft_memcpy((void*)new->arr, (void*)(*stack)->arr, sizeof(int) * (*stack)->count);
+	ft_memcpy((void*)new->arr, (void*)(*stack)->arr,
+	sizeof(int) * (*stack)->count);
 	new->count = (*stack)->count;
 	new->top = &new->arr[new->count - 1];
 	stack_del(stack);

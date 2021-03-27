@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 20:23:01 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 18:29:32 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:43:35 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void		print_stacks(t_stack *a, t_stack *b, char *instruction)
 {
 	int	lines;
 
-	ft_printf("%s\n", instruction);
+	if (instruction != NULL)
+		ft_printf("%s:\n\n", instruction);
 	if (stack_size(a) > stack_size(b))
 		lines = stack_size(a);
 	else

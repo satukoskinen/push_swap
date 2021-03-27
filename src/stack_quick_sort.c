@@ -6,14 +6,12 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 14:09:13 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 18:31:20 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:46:32 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
-
-void	sort_a(t_stack *a, t_stack *b, int a_size);
 
 int		select_pivot(t_stack *stack, int size)
 {

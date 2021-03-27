@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:29 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 18:36:32 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:40:59 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ static void	free_resources(t_stack **a, t_stack **b)
 
 static int	check_flags(int *argc, char ***argv)
 {
-	return (0);
-	if (!ft_strcmp(*argv[*argc - 1], "-v"))
+	if (!ft_strcmp((*argv)[*argc - 1], "-v"))
 	{
 		*argc = *argc - 1;
 		return (1);
 	}
-	else if (!ft_strcmp(*argv[1], "-v"))
+	else if (!ft_strcmp((*argv)[1], "-v"))
 	{
 		*argc = *argc - 1;
 		*argv = *argv + 1;

@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:49:19 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 18:28:01 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:46:40 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void		stack_quick_sort(t_stack *a, t_stack *b);
 int			stack_is_ordered(t_stack *stack, int ascending);
 void		print_stacks(t_stack *a, t_stack *b, char *instruction);
 
+void		sort_a(t_stack *a, t_stack *b, int a_size);
 void		sort_b_three(t_stack *stack);
 void		sort_a_three(t_stack *stack);
 

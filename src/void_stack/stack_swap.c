@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:38:49 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/22 15:25:15 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 18:47:04 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_stack			*stack_swap(t_stack *stack)
 	if (!tmp)
 		return (NULL);
 	ft_memcpy(tmp, stack->top, stack->content_size);
-	ft_memcpy(stack->top, stack->top - stack->content_size, stack->content_size);
+	ft_memcpy(stack->top, stack->top - stack->content_size,
+	stack->content_size);
 	ft_memcpy(stack->top - stack->content_size, tmp, stack->content_size);
 	return (stack);
 }
