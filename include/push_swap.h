@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:49:19 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/24 09:07:52 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/27 13:49:02 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 
 # include "stack.h"
 
+enum		e_operation
+{
+	SA, RA, RRA, SB, RB, RRB, PA, PB, SS, RR, RRR
+}			t_operation;
+
 t_stack		*read_arguments(int argc, char **argv);
 void		sort_stack(t_stack *a, t_stack *b);
 void		stack_bubble_sort(t_stack *a, t_stack *b);
+void		stack_quick_sort(t_stack *a, t_stack *b);
 int			stack_is_ordered(t_stack *stack, int ascending);
 void		print_stacks(t_stack *a, t_stack *b);
 
