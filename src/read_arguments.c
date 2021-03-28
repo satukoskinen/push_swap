@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:54:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 09:06:18 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 18:10:40 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,19 @@ static int		stack_contains(t_stack *stack, int value)
 
 static int		parse_line_values(t_stack **stack, char *line)
 {
-	int		i;
-	int		value;
+	int				i;
+	long long int	value;
 
 	i = 0;
 	while (line[i])
 	{
-		value = ft_atoi(&line[i]);
-		if ((value == 0 && line[i] != '0') || stack_contains(*stack, value))
+		value = ft_atoll(&line[i]);
+		if ((value == 0 && line[i] != '0')
+			|| value < -2147483647 - 1 || value > 2147483647)
 			return (0);
-		if (!stack_push(stack, value))
+		else if (stack_contains(*stack, (int)value))
+			return (0);
+		if (!stack_push(stack, (int)value))
 			return (0);
 		if (line[i] == '+' || line[i] == '-')
 			i++;
@@ -99,24 +102,26 @@ static t_stack	*read_from_file(char *file)
 
 t_stack			*read_arguments(int argc, char **argv)
 {
-	t_stack	*stack;
-	int		i;
-	int		value;
+	t_stack			*stack;
+	int				i;
+	long long int	value;
 
-	if (argc == 2 && !ft_isdigit(argv[1][0]))
+	if (argc == 2 && !ft_isdigit(argv[1][0])
+		&& argv[1][0] != '-' && argv[1][0] != '+')
 		return (read_from_file(argv[1]));
 	if (!(stack = stack_new(argc - 1)))
 		return (NULL);
 	i = argc - 1;
 	while (i > 0)
 	{
-		value = ft_atoi(argv[i]);
-		if ((value == 0 && argv[i][0] != '0') || stack_contains(stack, value))
+		value = ft_atoll(argv[i]);
+		if ((value == 0 && argv[i][0] != '0') || stack_contains(stack, (int)value)
+		|| value < -2147483647 - 1 || value > 2147483647)
 		{
 			stack_del(&stack);
 			return (NULL);
 		}
-		stack_push(&stack, value);
+		stack_push(&stack, (int)value);
 		i--;
 	}
 	return (stack);
