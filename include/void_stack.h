@@ -6,12 +6,12 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:12:28 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/23 21:17:23 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 15:57:44 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
+#ifndef VOID_STACK_H
+# define VOID_STACK_H
 
 typedef struct	s_stack
 {
