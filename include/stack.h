@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:12:28 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 16:48:18 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 11:02:11 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ typedef struct	s_stack
 	int			capacity;
 	int			count;
 }				t_stack;
+
+enum		e_operation
+{
+	SA, RA, RRA, SB, RB, RRB, PA, PB, SS, RR, RRR
+}			t_operation;
 
 t_stack			*stack_new(int capacity);
 t_stack			*stack_push(t_stack **stack, int value);

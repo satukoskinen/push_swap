@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:54:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 17:38:13 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 09:06:18 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		stack_contains(t_stack *stack, int value)
 	return (0);
 }
 
-static int		parse_line_values(t_stack *stack, char *line)
+static int		parse_line_values(t_stack **stack, char *line)
 {
 	int		i;
 	int		value;
@@ -38,9 +38,9 @@ static int		parse_line_values(t_stack *stack, char *line)
 	while (line[i])
 	{
 		value = ft_atoi(&line[i]);
-		if ((value == 0 && line[i] != '0') || stack_contains(stack, value))
+		if ((value == 0 && line[i] != '0') || stack_contains(*stack, value))
 			return (0);
-		if (!stack_push(&stack, value))
+		if (!stack_push(stack, value))
 			return (0);
 		if (line[i] == '+' || line[i] == '-')
 			i++;
@@ -79,11 +79,11 @@ static t_stack	*read_from_file(char *file)
 	line = NULL;
 	if (!(fd = open(file, O_RDONLY)))
 		return (NULL);
-	if (!(stack = stack_new(500)))
+	if (!(stack = stack_new(10)))
 		return (NULL);
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
-		if (!parse_line_values(stack, line))
+		if (!parse_line_values(&stack, line))
 			break ;
 		ft_strdel(&line);
 	}

@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 20:50:21 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 18:44:04 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:36:32 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,17 @@ static int	get_next_instruction(char **dst)
 
 static void	execute_instruction(int instruction, t_stack *a, t_stack *b)
 {
-	static void	(*fptr_1[])(t_stack *s) = { sa, ra, rra, sb, rb, rrb };
-	static void	(*fptr_2[])(t_stack *a, t_stack *b) = { pa, pb, ss, rr, rrr };
+	static void	(*fptr_1[])(t_stack *s, t_array **arr) =
+	{ sa, ra, rra, sb, rb, rrb };
+	static void	(*fptr_2[])(t_stack *a, t_stack *b, t_array **arr) =
+	{ pa, pb, ss, rr, rrr };
 
 	if (instruction >= SA && instruction <= RRA)
-		fptr_1[instruction](a);
+		fptr_1[instruction](a, NULL);
 	else if (instruction >= SB && instruction <= RRB)
-		fptr_1[instruction](b);
+		fptr_1[instruction](b, NULL);
 	else
-		fptr_2[instruction - 6](a, b);
+		fptr_2[instruction - 6](a, b, NULL);
 }
 
 int			get_checker_instructions(t_stack *a, t_stack *b, int verbose)

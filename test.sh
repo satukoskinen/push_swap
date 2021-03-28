@@ -4,7 +4,7 @@ arr_size=500
 
 declare -a array
 
-for i in {1..500}
+for i in {1..50}
 do
 	array[i - 1]=$i
 done

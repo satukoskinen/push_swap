@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:45:21 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 18:45:22 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:42:12 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "push_swap.h"
 #include "libft.h"
 
-void	sort_a_three(t_stack *stack)
+void	sort_a_three(t_stack *stack, t_array **instructions)
 {
 	int		v1;
 	int		v2;
@@ -23,60 +23,41 @@ void	sort_a_three(t_stack *stack)
 	v1 = *(stack->top);
 	v2 = *(stack->top - 1);
 	v3 = *(stack->top - 2);
-	if (v1 < v2 && v2 < v3)
+	if (v1 < v2 && v2 < v3 && v1 < v3)
 		return ;
 	else if (v1 < v2 && v2 > v3 && v1 < v3)
 	{
-		ra(stack);
-		ft_putstr("ra\n");
-		sa(stack);
-		ft_putstr("sa\n");
-		rra(stack);
-		ft_putstr("rra\n");
+		ra(stack, instructions);
+		sa(stack, instructions);
+		rra(stack, instructions);
 	}
 	else if (v1 > v2 && v2 < v3 && v1 < v3)
-	{
-		sa(stack);
-		ft_putstr("sa\n");
-	}
+		sa(stack, instructions);
 	else if (v1 < v2 && v2 > v3)
 	{
-		ra(stack);
-		ft_putstr("ra\n");
-		sa(stack);
-		ft_putstr("sa\n");
-		rra(stack);
-		ft_putstr("rra\n");
-		sa(stack);
-		ft_putstr("sa\n");
+		ra(stack, instructions);
+		sa(stack, instructions);
+		rra(stack, instructions);
+		sa(stack, instructions);
 	}
 	else if (v1 > v2 && v2 < v3 && v1 > v3)
 	{
-		sa(stack);
-		ft_putstr("sa\n");
-		ra(stack);
-		ft_putstr("ra\n");
-		sa(stack);
-		ft_putstr("sa\n");
-		rra(stack);
-		ft_putstr("rra\n");
+		sa(stack, instructions);
+		ra(stack, instructions);
+		sa(stack, instructions);
+		rra(stack, instructions);
 	}
 	else if (v1 > v2 && v2 > v3 && v1 > v3)
 	{
-		sa(stack);
-		ft_putstr("sa\n");
-		ra(stack);
-		ft_putstr("ra\n");
-		sa(stack);
-		ft_putstr("sa\n");
-		rra(stack);
-		ft_putstr("rra\n");
-		sa(stack);
-		ft_putstr("sa\n");
+		sa(stack, instructions);
+		ra(stack, instructions);
+		sa(stack, instructions);
+		rra(stack, instructions);
+		sa(stack, instructions);
 	}
 }
 
-void	sort_b_three(t_stack *stack)
+void	sort_b_three(t_stack *stack, t_array **instructions)
 {
 	int	v1;
 	int	v2;
@@ -89,51 +70,32 @@ void	sort_b_three(t_stack *stack)
 		return ;
 	else if (v1 > v2 && v2 < v3 && v1 > v3)
 	{
-		rb(stack);
-		ft_putstr("rb\n");
-		sb(stack);
-		ft_putstr("sb\n");
-		rrb(stack);
-		ft_putstr("rrb\n");
+		rb(stack, instructions);
+		sb(stack, instructions);
+		rrb(stack, instructions);
 	}
 	else if (v1 < v2 && v2 > v3 && v1 > v3)
-	{
-		sb(stack);
-		ft_putstr("sb\n");
-	}
+		sb(stack, instructions);
 	else if (v1 > v2 && v2 < v3 && v1 < v3)
 	{
-		rb(stack);
-		ft_putstr("rb\n");
-		sb(stack);
-		ft_putstr("sb\n");
-		rrb(stack);
-		ft_putstr("rrb\n");
-		sb(stack);
-		ft_putstr("sb\n");
+		rb(stack, instructions);
+		sb(stack, instructions);
+		rrb(stack, instructions);
+		sb(stack, instructions);
 	}
 	else if (v1 < v2 && v2 > v3 && v1 < v3)
 	{
-		sb(stack);
-		ft_putstr("sb\n");
-		rb(stack);
-		ft_putstr("rb\n");
-		sb(stack);
-		ft_putstr("sb\n");
-		rrb(stack);
-		ft_putstr("rrb\n");
+		sb(stack, instructions);
+		rb(stack, instructions);
+		sb(stack, instructions);
+		rrb(stack, instructions);
 	}
 	else if (v1 < v2 && v2 < v3 && v1 < v3)
 	{
-		sb(stack);
-		ft_putstr("sb\n");
-		rb(stack);
-		ft_putstr("rb\n");
-		sb(stack);
-		ft_putstr("sb\n");
-		rrb(stack);
-		ft_putstr("rrb\n");
-		sb(stack);
-		ft_putstr("sb\n");
+		sb(stack, instructions);
+		rb(stack, instructions);
+		sb(stack, instructions);
+		rrb(stack, instructions);
+		sb(stack, instructions);
 	}
 }

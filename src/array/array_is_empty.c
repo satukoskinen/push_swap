@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_stack.c                                       :+:      :+:    :+:   */
+/*   array_is_empty.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/22 10:59:43 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 10:11:25 by skoskine         ###   ########.fr       */
+/*   Created: 2021/03/27 22:27:45 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/28 12:26:44 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "libft.h"
+#include "array.h"
 
-t_array	*sort_stack(t_stack *a, t_stack *b)
+int	array_is_empty(t_array *array)
 {
-	t_array *instructions;
-
-	instructions = array_new(10, sizeof(int));
-	if (instructions == NULL)
-		return (NULL);
-	if (stack_is_ordered(a, 1))
-		return (instructions);
-	if (stack_size(a) < 5)
-		stack_bubble_sort(a, b, &instructions);
-	else
-		stack_quick_sort(a, b, &instructions);
-	return (instructions);
+	if (array->size == 0)
+		return (1);
+	return (0);
 }

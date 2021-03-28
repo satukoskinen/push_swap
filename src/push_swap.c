@@ -6,12 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/22 10:57:41 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 13:52:03 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
+#include "array.h"
 
 static int	error(char *msg)
 {
@@ -23,6 +24,7 @@ int			main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
+	t_array	*instructions;
 
 	if (argc == 1)
 		return (0);
@@ -33,8 +35,12 @@ int			main(int argc, char **argv)
 		stack_del(&a);
 		return (error("Error\n"));
 	}
-	sort_stack(a, b);
+	instructions = sort_stack(a, b);
 	stack_del(&a);
 	stack_del(&b);
+	if (instructions == NULL)
+		return (error("Error\n"));
+	optimise_instructions(instructions);
+	print_instructions(instructions);
 	return (0);
 }

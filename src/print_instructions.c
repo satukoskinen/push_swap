@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_stack.c                                       :+:      :+:    :+:   */
+/*   print_instructions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/22 10:59:43 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 10:11:25 by skoskine         ###   ########.fr       */
+/*   Created: 2021/03/28 10:45:15 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/28 12:25:10 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
-t_array	*sort_stack(t_stack *a, t_stack *b)
+void	print_instructions(t_array *arr)
 {
-	t_array *instructions;
+	size_t		i;
+	static char	*instructions[] = { "sa", "ra", "rra", "sb", "rb", "rrb",
+									"pa", "pb", "ss", "rr", "rrr", NULL};
 
-	instructions = array_new(10, sizeof(int));
-	if (instructions == NULL)
-		return (NULL);
-	if (stack_is_ordered(a, 1))
-		return (instructions);
-	if (stack_size(a) < 5)
-		stack_bubble_sort(a, b, &instructions);
-	else
-		stack_quick_sort(a, b, &instructions);
-	return (instructions);
+	i = 0;
+	while (i < arr->size)
+	{
+		ft_putendl(instructions[*(int*)array_get(arr, i)]);
+		i++;
+	}
 }

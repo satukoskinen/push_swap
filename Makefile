@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/20 11:01:30 by skoskine          #+#    #+#              #
-#    Updated: 2021/03/27 16:24:03 by skoskine         ###   ########.fr        #
+#    Updated: 2021/03/28 11:10:54 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,19 @@ STACK_SRC = $(addprefix $(SRC_DIR)stack/, \
 	stack_swap.c \
 )
 
-PUSH_SWAP_SRC = $(STACK_SRC) $(addprefix $(SRC_DIR), \
+ARR_SRC = $(addprefix $(SRC_DIR)array/, \
+	array_add.c \
+	array_del.c \
+	array_get.c \
+	array_indexof.c \
+	array_insert.c \
+	array_is_empty.c \
+	array_new.c \
+	array_remove.c \
+	array_size.c \
+)
+
+PUSH_SWAP_SRC = $(STACK_SRC) $(ARR_SRC) $(addprefix $(SRC_DIR), \
 	push_swap.c \
 	read_arguments.c \
 	sort_stack.c \
@@ -42,11 +54,13 @@ PUSH_SWAP_SRC = $(STACK_SRC) $(addprefix $(SRC_DIR), \
 	instructions_ab.c \
 	stack_is_ordered.c \
 	print_stacks.c \
+	print_instructions.c \
+	optimise_instructions.c \
 	stack_max.c \
 	stack_min.c \
 )
 
-CHECKER_SRC = $(STACK_SRC) $(addprefix $(SRC_DIR), \
+CHECKER_SRC = $(STACK_SRC) $(ARR_SRC) $(addprefix $(SRC_DIR), \
 	checker.c \
 	read_arguments.c \
 	checker_instructions.c \
@@ -86,6 +100,7 @@ $(PUSH_SWAP_SRC): include/push_swap.h include/stack.h
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)stack
+	@mkdir -p $(OBJ_DIR)array
 
 $(LIBFT):
 	$(MAKE) -C libft
