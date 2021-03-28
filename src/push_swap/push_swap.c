@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 15:46:19 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 20:45:19 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int				main(int argc, char **argv)
 	stack_del(&b);
 	if (instructions == NULL)
 		return (error("Error\n"));
-	optimize_instructions(instructions);
+	if (instructions->size > 1)
+		optimize_instructions(instructions);
 	print_instructions(instructions);
 	array_del(&instructions);
 	return (0);

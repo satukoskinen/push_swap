@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:54:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 18:10:40 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 20:17:46 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ t_stack			*read_arguments(int argc, char **argv)
 	while (i > 0)
 	{
 		value = ft_atoll(argv[i]);
-		if ((value == 0 && argv[i][0] != '0') || stack_contains(stack, (int)value)
+		if ((value == 0 && argv[i][0] != '0')
+		|| stack_contains(stack, (int)value)
 		|| value < -2147483647 - 1 || value > 2147483647)
 		{
 			stack_del(&stack);
