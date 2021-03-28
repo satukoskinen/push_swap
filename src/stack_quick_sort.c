@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 14:09:13 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 13:05:27 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 14:53:27 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,6 @@ int			select_pivot(t_stack *stack, int size)
 		i++;
 	}
 	return ((max + min) / 2);
-}
-
-void		sort_top(t_stack *stack, int count, int a, t_array **instructions)
-{
-	if (count <= 1)
-		return ;
-	else if (count == 2 && ((a && *(stack->top) > *(stack->top - 1))
-		|| (!a && *(stack->top) < *(stack->top - 1))))
-	{
-		if (a)
-			sa(stack, instructions);
-		else
-			sb(stack, instructions);
-	}
-	else if (count == 3 && a)
-		sort_a_three(stack, instructions);
-	else if (count == 3 && !a)
-		sort_b_three(stack, instructions);
 }
 
 static int	partition_b(t_stack *a, t_stack *b, int b_size,
@@ -89,12 +71,16 @@ void		sort_b(t_stack *a, t_stack *b, int b_size, t_array **instructions)
 		a_size = 0;
 	if (b_size - a_size > 3)
 		sort_b(a, b, b_size - a_size, instructions);
-	else
+	else if (b_size - a_size < stack_size(b))
 		sort_top(b, b_size - a_size, 0, instructions);
+	else
+		stack_sort_three(b, 0, instructions);
 	if (a_size > 3)
 		sort_a(a, b, a_size, instructions);
-	else
+	else if (a_size < stack_size(a))
 		sort_top(a, a_size, 1, instructions);
+	else
+		stack_sort_three(a, 1, instructions);
 	while (a_size-- > 0)
 		pb(a, b, instructions);
 }
@@ -137,12 +123,16 @@ void		sort_a(t_stack *a, t_stack *b, int a_size, t_array **instructions)
 		b_size = 0;
 	if (a_size - b_size > 3)
 		sort_a(a, b, a_size - b_size, instructions);
-	else
+	else if (a_size - b_size < stack_size(a))
 		sort_top(a, a_size - b_size, 1, instructions);
+	else
+		stack_sort_three(a, 1, instructions);
 	if (b_size > 3)
 		sort_b(a, b, b_size, instructions);
-	else
+	else if (b_size < stack_size(b))
 		sort_top(b, b_size, 0, instructions);
+	else
+		stack_sort_three(b, 0, instructions);
 	while (b_size-- > 0)
 		pa(a, b, instructions);
 }

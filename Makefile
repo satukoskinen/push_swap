@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/20 11:01:30 by skoskine          #+#    #+#              #
-#    Updated: 2021/03/28 11:10:54 by skoskine         ###   ########.fr        #
+#    Updated: 2021/03/28 15:47:20 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,9 @@ ARR_SRC = $(addprefix $(SRC_DIR)array/, \
 PUSH_SWAP_SRC = $(STACK_SRC) $(ARR_SRC) $(addprefix $(SRC_DIR), \
 	push_swap.c \
 	read_arguments.c \
-	sort_stack.c \
 	stack_bubble_sort.c \
 	stack_quick_sort.c \
+	stack_sort_top.c \
 	stack_sort_three.c \
 	instructions_a.c \
 	instructions_b.c \
@@ -55,7 +55,7 @@ PUSH_SWAP_SRC = $(STACK_SRC) $(ARR_SRC) $(addprefix $(SRC_DIR), \
 	stack_is_ordered.c \
 	print_stacks.c \
 	print_instructions.c \
-	optimise_instructions.c \
+	optimize_instructions.c \
 	stack_max.c \
 	stack_min.c \
 )
@@ -78,10 +78,10 @@ CHECKER_OBJ = $(subst $(SRC_DIR), $(OBJ_DIR), $(CHECKER_SRC:.c=.o))
 LIBFT = libft/libft.a
 
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 CPPFLAGS = -I libft -I include
 LDLIBS = -lft
-LDFLAGS = -L libft -fsanitize=address
+LDFLAGS = -L libft #-fsanitize=address
 
 all: $(NAME) $(CHECKER)
 

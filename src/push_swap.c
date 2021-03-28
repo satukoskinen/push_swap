@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 13:52:03 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 15:46:19 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,29 @@
 #include "push_swap.h"
 #include "array.h"
 
-static int	error(char *msg)
+static int		error(char *msg)
 {
 	ft_putstr_fd(msg, 2);
 	return (1);
 }
 
-int			main(int argc, char **argv)
+static t_array	*sort_stack(t_stack *a, t_stack *b)
+{
+	t_array *instructions;
+
+	instructions = array_new(10, sizeof(int));
+	if (instructions == NULL)
+		return (NULL);
+	if (stack_is_ordered(a, 1))
+		return (instructions);
+	if (stack_size(a) <= 3)
+		stack_sort_three(a, 1, &instructions);
+	else
+		stack_quick_sort(a, b, &instructions);
+	return (instructions);
+}
+
+int				main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
@@ -40,7 +56,8 @@ int			main(int argc, char **argv)
 	stack_del(&b);
 	if (instructions == NULL)
 		return (error("Error\n"));
-	optimise_instructions(instructions);
+	optimize_instructions(instructions);
 	print_instructions(instructions);
+	array_del(&instructions);
 	return (0);
 }
