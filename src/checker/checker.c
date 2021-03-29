@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:29 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/27 18:40:59 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/29 15:23:41 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,20 @@ static int	check_flags(int *argc, char ***argv)
 	return (0);
 }
 
+static int	init_checker(t_stack **a, t_stack **b, int argc, char **argv)
+{
+	*a = read_arguments(argc, argv);
+	if (*a == NULL)
+		return (0);
+	*b = stack_new(stack_size(*a));
+	if (*b == NULL)
+	{
+		stack_del(a);
+		return (0);
+	}
+	return (1);
+}
+
 int			main(int argc, char **argv)
 {
 	t_stack		*a;
@@ -50,13 +64,10 @@ int			main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	verbose = check_flags(&argc, &argv);
-	if (!(a = read_arguments(argc, argv)))
+	if (!init_checker(&a, &b, argc, argv))
 		return (error("Error\n"));
-	if (!(b = stack_new(stack_size(a))))
-	{
-		stack_del(&a);
-		return (error("Error\n"));
-	}
+	if (verbose)
+		print_stacks(a, b, NULL);
 	if (!(get_checker_instructions(a, b, verbose)))
 	{
 		free_resources(&a, &b);
