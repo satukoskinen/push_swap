@@ -33,14 +33,9 @@ do
 	then
 		printf "./push_swap $test_args | ./checker $test_args > output: KO\n"
 		exit 1
+	else
+		printf "OK:"
 	fi
-	grep "Error" output > fail
-	if [ -s fail ]
-	then
-		printf "./push_swap $test_args | ./checker $test_args > output: Error\n"
-		exit 1
-	fi
-	printf "OK:"
 	./push_swap $test_args | wc -l > count
 	cat count
 	rm -f fail output count $test_args
