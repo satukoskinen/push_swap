@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 09:05:52 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 11:30:02 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/29 08:41:05 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ static void	push_and_swap_to_a(t_stack *a, t_stack *b, t_array **instructions)
 		swap = 1;
 	pa(a, b, instructions);
 	if (swap)
-	{
 		sa(a, instructions);
-	}
 }
 
 static void	push_and_swap_to_b(t_stack *a, t_stack *b, t_array **instructions)
@@ -38,9 +36,7 @@ static void	push_and_swap_to_b(t_stack *a, t_stack *b, t_array **instructions)
 		swap = 1;
 	pb(a, b, instructions);
 	if (swap)
-	{
 		sb(b, instructions);
-	}
 }
 
 void		stack_bubble_sort(t_stack *a, t_stack *b, t_array **instructions)
@@ -59,9 +55,7 @@ void		stack_bubble_sort(t_stack *a, t_stack *b, t_array **instructions)
 				break ;
 		}
 		while (!stack_is_empty(b))
-		{
 			push_and_swap_to_a(a, b, instructions);
-		}
 		if (stack_is_ordered(a, 1))
 			break ;
 		i++;

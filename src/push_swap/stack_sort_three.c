@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:45:21 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 15:37:35 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/28 22:28:14 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	sort_a_three(t_stack *stack, t_array **instructions)
 	v1 = *(stack->top);
 	v2 = *(stack->top - 1);
 	v3 = *(stack->top - 2);
-	if (v1 < v2 && v2 < v3 && v1 < v3)
+	if (v1 < v2 && v2 < v3)
 		return ;
 	else if (v1 < v2 && v2 > v3 && v1 < v3)
 	{
@@ -72,11 +72,12 @@ static void	sort_b_three(t_stack *stack, t_array **instructions)
 	}
 }
 
-void		stack_sort_three(t_stack *stack, int a, t_array **instructions)
+void		stack_sort_three(t_stack *stack, int size, int a,
+t_array **instructions)
 {
-	if (stack_size(stack) <= 1)
+	if (size <= 1)
 		return ;
-	else if (stack_size(stack) == 2 && ((a && *(stack->top) > *(stack->top - 1))
+	else if (size == 2 && ((a && *(stack->top) > *(stack->top - 1))
 		|| (!a && *(stack->top) < *(stack->top - 1))))
 	{
 		if (a)
@@ -88,4 +89,8 @@ void		stack_sort_three(t_stack *stack, int a, t_array **instructions)
 		sort_a_three(stack, instructions);
 	else if (stack_size(stack) == 3 && !a)
 		sort_b_three(stack, instructions);
+	else if (stack_size(stack) > 3 && a)
+		sort_a_top_three(stack, instructions);
+	else if (stack_size(stack) > 3 && !a)
+		sort_b_top_three(stack, instructions);
 }
