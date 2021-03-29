@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 20:31:17 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 20:40:02 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/29 15:32:29 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_array **instructions)
 			rb(b, instructions);
 		i++;
 	}
-	while (i-- - a_size > 0 && b_size != (stack_size(b) + a_size))
+	while (i-- > a_size && b_size != (stack_size(b) + a_size))
 		rrb(b, instructions);
 	return (a_size);
 }
@@ -125,7 +125,7 @@ t_array **instructions)
 			ra(a, instructions);
 		i++;
 	}
-	while (i-- - b_size > 0 && a_size != (stack_size(a) + b_size))
+	while (i-- > b_size && a_size != (stack_size(a) + b_size))
 		rra(a, instructions);
 	return (b_size);
 }

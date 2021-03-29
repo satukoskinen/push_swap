@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/20 11:01:30 by skoskine          #+#    #+#              #
-#    Updated: 2021/03/28 20:36:02 by skoskine         ###   ########.fr        #
+#    Updated: 2021/03/29 11:58:57 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ COMMON_SRC = $(addprefix $(SRC_DIR), \
 	print_stacks.c \
 )
 
-PUSH_SWAP_SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) $(addprefix $(SRC_DIR)push_swap/, \
+PUSH_SWAP_SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) \
+	$(addprefix $(SRC_DIR)push_swap/, \
 	push_swap.c \
 	stack_bubble_sort.c \
 	stack_quick_sort.c \
@@ -64,7 +65,8 @@ PUSH_SWAP_SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) $(addprefix $(SRC_DIR)push
 	stack_min.c \
 )
 
-CHECKER_SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) $(addprefix $(SRC_DIR)checker/, \
+CHECKER_SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) \
+	$(addprefix $(SRC_DIR)checker/, \
 	checker.c \
 	checker_instructions.c \
 )
