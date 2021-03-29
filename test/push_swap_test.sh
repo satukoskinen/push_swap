@@ -2,16 +2,16 @@
 
 if [ $# == 2 ]
 then
-	arr_size=$1
+	args_no=$1
 	repeat=$2
 else
-	printf "usage: $0 arr_size repeat\n"
+	printf "usage: $0 args_no repetitions\n"
 	exit 1
 fi
 
 generate_input () {
 	local start=0
-	local end=$arr_size
+	local end=$args_no
 	local i
 	declare -a array
 
@@ -23,26 +23,55 @@ generate_input () {
 	printf "%s " ${array[@]}
 }
 
-for (( i=0; i<=$repeat; i++ ))
+generate_random_input () {
+	local start=0
+	local end=1000
+	local i
+	declare -a array
+
+	array=$(shuf -i $start-$end -n $args_no)
+	printf "%s " ${array[@]}
+}
+
+rm -rf test_logs
+mkdir test_logs
+
+for (( i=0; i<$repeat; i++ ))
 do
-	test_args="test_args_${arr_size}_${i}"
-	generate_input > $test_args
-	./push_swap $test_args | ./checker $test_args > output
-	grep "KO" output > fail
-	if [ -s fail ]
+#	test_args="test_args_${args_no}_${i}"
+#	generate_random_input > $test_args
+	log_file="test_logs/test_log_${args_no}_${i}"
+	test_args=$(generate_random_input)
+	echo $test_args >> $log_file
+	./push_swap $test_args > instructions 2>error
+	cat instructions >> $log_file
+	if [ -s error ]
 	then
-		printf "./push_swap $test_args | ./checker $test_args > output: KO\n"
+		printf "./push_swap $test_args > instructions: Error\n"
 		exit 1
 	fi
-	grep "Error" output > fail
-	if [ -s fail ]
+	./checker $test_args < instructions > output 2>error
+	cat output >> $log_file
+	cat error >> $log_file
+	if [ -s error ]
 	then
-		printf "./push_swap $test_args | ./checker $test_args > output: Error\n"
+		printf "./checker $test_args < instructions > output: Error\n"
 		exit 1
 	fi
-	printf "OK:"
-	./push_swap $test_args | wc -l > count
-	cat count
-	rm -f fail output count $test_args
+	grep "KO" output > error
+	if [ -s error ]
+	then
+		printf "./checker $test_args < instructions > output: KO\n"
+		exit 1
+	fi
+	grep "OK" output > ok
+	if [ -s ok ]
+	then
+		printf "OK:"
+		./push_swap $test_args | wc -l > count
+		cat count >> $log_file
+		cat count
+	fi
+	rm -f error output ok count instructions $test_args
 done
 
