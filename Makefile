@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/20 11:01:30 by skoskine          #+#    #+#              #
-#    Updated: 2021/03/29 11:58:57 by skoskine         ###   ########.fr        #
+#    Updated: 2021/03/30 09:39:13 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,10 +78,10 @@ CHECKER_OBJ = $(subst $(SRC_DIR), $(OBJ_DIR), $(CHECKER_SRC:.c=.o))
 LIBFT = libft/libft.a
 
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 CPPFLAGS = -I libft -I include
 LDLIBS = -lft
-LDFLAGS = -L libft -fsanitize=address
+LDFLAGS = -L libft #-fsanitize=address
 
 all: $(NAME) $(CHECKER)
 
