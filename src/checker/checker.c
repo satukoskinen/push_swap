@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:29 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/29 15:23:41 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/29 22:31:39 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	check_flags(int *argc, char ***argv)
 	return (0);
 }
 
-static int	init_checker(t_stack **a, t_stack **b, int argc, char **argv)
+static int	init_stacks(t_stack **a, t_stack **b, int argc, char **argv)
 {
 	*a = read_arguments(argc, argv);
 	if (*a == NULL)
@@ -64,7 +64,7 @@ int			main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	verbose = check_flags(&argc, &argv);
-	if (!init_checker(&a, &b, argc, argv))
+	if (!init_stacks(&a, &b, argc, argv))
 		return (error("Error\n"));
 	if (verbose)
 		print_stacks(a, b, NULL);

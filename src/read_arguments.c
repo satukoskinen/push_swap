@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:54:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/29 11:54:39 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/29 18:56:02 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,12 @@ static int		parse_line_values(t_stack **stack, char *line)
 static t_stack	*reverse_stack(t_stack *stack)
 {
 	t_stack	*new;
-	int		i;
 
 	if (!(new = stack_new(stack->capacity)))
 	{
 		stack_del(&stack);
 		return (NULL);
 	}
-	i = 0;
 	while (stack->count > 0)
 		stack_push(&new, stack_pop(stack));
 	stack_del(&stack);

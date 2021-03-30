@@ -6,13 +6,12 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 14:14:36 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 12:24:55 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/29 22:25:31 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "array.h"
-#include "libft.h"
 
 void	sb(t_stack *b, t_array **arr)
 {

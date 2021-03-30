@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 22:16:30 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/29 22:33:20 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ static t_array	*sort_stack(t_stack *a, t_stack *b)
 	return (instructions);
 }
 
+static int		init_stacks(t_stack **a, t_stack **b, int argc, char **argv)
+{
+	*a = read_arguments(argc, argv);
+	if (*a == NULL)
+		return (0);
+	*b = stack_new(stack_size(*a));
+	if (*b == NULL)
+	{
+		stack_del(a);
+		return (0);
+	}
+	return (1);
+}
+
 int				main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -44,13 +58,8 @@ int				main(int argc, char **argv)
 
 	if (argc == 1)
 		return (0);
-	if (!(a = read_arguments(argc, argv)))
+	if (!init_stacks(&a, &b, argc, argv))
 		return (error("Error\n"));
-	if (!(b = stack_new(stack_size(a))))
-	{
-		stack_del(&a);
-		return (error("Error\n"));
-	}
 	instructions = sort_stack(a, b);
 	stack_del(&a);
 	stack_del(&b);

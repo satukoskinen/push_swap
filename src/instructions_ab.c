@@ -6,12 +6,11 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 10:41:23 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 12:24:49 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/29 22:25:21 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
-#include "libft.h"
 #include "array.h"
 
 void	pa(t_stack *a, t_stack *b, t_array **arr)

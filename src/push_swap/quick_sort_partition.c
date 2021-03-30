@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 20:31:17 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/29 15:32:29 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/29 20:41:34 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ t_array **instructions)
 	a_size = 0;
 	while (i < b_size)
 	{
-		if (stack_max(b, b_size - i) < pivot)
-			break ;
 		if (stack_peek(b) >= pivot)
 		{
 			pa(a, b, instructions);
@@ -97,7 +95,8 @@ t_array **instructions)
 			rb(b, instructions);
 		i++;
 	}
-	while (i-- > a_size && b_size != (stack_size(b) + a_size))
+	b_size = b_size - a_size;
+	while (i-- > a_size && b_size != stack_size(b))
 		rrb(b, instructions);
 	return (a_size);
 }
@@ -114,8 +113,6 @@ t_array **instructions)
 	b_size = 0;
 	while (i < a_size)
 	{
-		if (stack_min(a, a_size - i) > pivot)
-			break ;
 		if (stack_peek(a) <= pivot)
 		{
 			pb(a, b, instructions);
@@ -125,7 +122,8 @@ t_array **instructions)
 			ra(a, instructions);
 		i++;
 	}
-	while (i-- > b_size && a_size != (stack_size(a) + b_size))
+	a_size = a_size - b_size;
+	while (i-- > b_size && a_size != stack_size(a))
 		rra(a, instructions);
 	return (b_size);
 }
