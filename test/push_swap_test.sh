@@ -9,7 +9,7 @@ else
 	exit 1
 fi
 
-generate_input () {
+generate_shuffled_input () {
 	local start=0
 	local end=$args_no
 	local i
@@ -25,7 +25,7 @@ generate_input () {
 
 generate_random_input () {
 	local start=0
-	local end=1000
+	local end=10000
 	local i
 	declare -a array
 
