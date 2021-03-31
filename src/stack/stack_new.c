@@ -6,14 +6,14 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:36:54 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/22 11:17:36 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 20:00:50 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include <stdlib.h>
 
-t_stack			*stack_new(int capacity)
+t_stack	*stack_new(int capacity)
 {
 	t_stack *new;
 

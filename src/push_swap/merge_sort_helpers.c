@@ -6,14 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 17:32:35 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 17:55:29 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 20:03:24 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		sort_three(t_stack *stack, int size, int a,
-t_array **instructions)
+void	sort_three(t_stack *stack, int size, int a, t_array **instructions)
 {
 	if (size == 3)
 		stack_sort_three(stack, size, a, instructions);
@@ -23,7 +22,7 @@ t_array **instructions)
 		sb(stack, instructions);
 }
 
-void		rotate_to_bottom(t_stack *stack, int size, int a,
+void	rotate_to_bottom(t_stack *stack, int size, int a,
 t_array **instructions)
 {
 	int	i;

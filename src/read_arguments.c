@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:54:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/29 18:56:02 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 20:02:40 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static int		stack_contains(t_stack *stack, int value)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (i < stack->count)
@@ -100,8 +100,8 @@ static t_stack	*read_from_file(char *file)
 
 t_stack			*read_arguments(int argc, char **argv)
 {
-	t_stack			*stack;
-	int				i;
+	t_stack	*stack;
+	int		i;
 
 	if (argc == 2 && !ft_isdigit(argv[1][0])
 		&& argv[1][0] != '-' && argv[1][0] != '+')

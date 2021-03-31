@@ -6,14 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 14:09:13 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 17:41:00 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 19:58:47 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		quick_sort_b(t_stack *a, t_stack *b, int b_size,
-t_array **instructions)
+void	quick_sort_b(t_stack *a, t_stack *b, int b_size, t_array **instructions)
 {
 	int	a_size;
 
@@ -34,8 +33,7 @@ t_array **instructions)
 		pb(a, b, instructions);
 }
 
-void		quick_sort_a(t_stack *a, t_stack *b, int a_size,
-t_array **instructions)
+void	quick_sort_a(t_stack *a, t_stack *b, int a_size, t_array **instructions)
 {
 	int	b_size;
 
@@ -56,7 +54,7 @@ t_array **instructions)
 		pa(a, b, instructions);
 }
 
-void		stack_quick_sort(t_stack *a, t_stack *b, t_array **instructions)
+void	stack_quick_sort(t_stack *a, t_stack *b, t_array **instructions)
 {
 	quick_sort_a(a, b, stack_size(a), instructions);
 }

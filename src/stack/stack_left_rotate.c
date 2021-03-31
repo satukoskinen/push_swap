@@ -6,13 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:36:07 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/22 11:34:06 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 20:00:47 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-t_stack			*stack_left_rotate(t_stack *stack)
+t_stack	*stack_left_rotate(t_stack *stack)
 {
 	int	tmp;
 	int	i;

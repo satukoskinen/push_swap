@@ -6,13 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:24:03 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 17:57:00 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 19:57:05 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			split_b(t_stack *a, t_stack *b, int b_size,
+static int	split_b(t_stack *a, t_stack *b, int b_size,
 t_array **instructions)
 {
 	int	a_size;
@@ -56,7 +56,7 @@ t_array **instructions)
 		rrb(b, instructions);
 }
 
-int			split_a(t_stack *a, t_stack *b, int a_size, t_array **instructions)
+static int	split_a(t_stack *a, t_stack *b, int a_size, t_array **instructions)
 {
 	int	b_size;
 

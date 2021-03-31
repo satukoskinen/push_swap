@@ -6,11 +6,10 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:45:21 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 17:41:09 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 19:49:27 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
 #include "push_swap.h"
 
 static void	sort_a_three(t_stack *stack, t_array **instructions)

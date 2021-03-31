@@ -6,13 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:37:36 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/23 23:24:49 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 20:00:58 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-int				stack_pop(t_stack *stack)
+int	stack_pop(t_stack *stack)
 {
 	int	value;
 
