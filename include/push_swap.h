@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:49:19 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 17:38:34 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:45:22 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		merge_sort_a(t_stack *a, t_stack *b, int a_size,
 			t_array **instructions);
 void		merge_sort_b(t_stack *a, t_stack *b, int b_size,
 			t_array **instructions);
-void		sort_stack(t_stack *stack, int size, int a,
+void		sort_three(t_stack *stack, int size, int a,
 			t_array **instructions);
 void		rotate_to_bottom(t_stack *stack, int size, int a,
 			t_array **instructions);

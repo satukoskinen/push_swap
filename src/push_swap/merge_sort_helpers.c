@@ -6,13 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 17:32:35 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 17:39:00 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:44:59 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		sort_stack(t_stack *stack, int size, int a,
+void		sort_three(t_stack *stack, int size, int a,
 t_array **instructions)
 {
 	if (size == 3)

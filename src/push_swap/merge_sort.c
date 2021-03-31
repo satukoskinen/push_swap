@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:24:03 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 17:39:39 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:45:14 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_array **instructions)
 
 	if (b_size <= 3)
 	{
-		sort_stack(b, b_size, 0, instructions);
+		sort_three(b, b_size, 0, instructions);
 		return ;
 	}
 	a_size = split_b_to_two(a, b, b_size, instructions);
@@ -77,7 +77,7 @@ t_array **instructions)
 
 	if (a_size <= 3)
 	{
-		sort_stack(a, a_size, 1, instructions);
+		sort_three(a, a_size, 1, instructions);
 		return ;
 	}
 	b_size = split_a_to_two(a, b, a_size, instructions);
