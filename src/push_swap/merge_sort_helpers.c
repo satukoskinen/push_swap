@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 17:32:35 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 17:44:59 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:55:29 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_array **instructions)
 	int	i;
 
 	i = 0;
-	while (i++ < size && size != stack_size(stack))
+	while (i++ < size)
 	{
 		if (a)
 			ra(stack, instructions);
