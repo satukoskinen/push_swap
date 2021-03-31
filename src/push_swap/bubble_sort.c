@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_bubble_sort.c                                :+:      :+:    :+:   */
+/*   bubble_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 09:05:52 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/29 08:41:05 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:39:51 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft.h"
 
 static void	push_and_swap_to_a(t_stack *a, t_stack *b, t_array **instructions)
 {

@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/29 22:33:20 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 16:05:58 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_array	*sort_stack(t_stack *a, t_stack *b)
 	if (stack_size(a) <= 3)
 		stack_sort_three(a, stack_size(a), 1, &instructions);
 	else
-		stack_quick_sort(a, b, &instructions);
+		stack_merge_sort(a, b, &instructions);
 	return (instructions);
 }
 

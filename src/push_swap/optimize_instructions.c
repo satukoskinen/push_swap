@@ -6,12 +6,11 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 12:37:10 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 20:55:52 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:40:05 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft.h"
 
 static int		opposite_operations(int i_0, int i_1)
 {

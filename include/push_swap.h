@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:49:19 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/29 08:43:48 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:38:34 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,33 @@
 # include "array.h"
 
 t_stack		*read_arguments(int argc, char **argv);
+
 void		stack_sort_three(t_stack *stack, int size, int a,
 			t_array **instructions);
+void		sort_top(t_stack *stack, int count, int a, t_array **instructions);
 void		sort_a_top_three(t_stack *stack, t_array **instructions);
 void		sort_b_top_three(t_stack *stack, t_array **instructions);
 
 void		stack_bubble_sort(t_stack *a, t_stack *b, t_array **instructions);
+
 void		stack_quick_sort(t_stack *a, t_stack *b, t_array **instructions);
+void		quick_sort_a(t_stack *a, t_stack *b, int a_size,
+			t_array **instructions);
 int			partition_a(t_stack *a, t_stack *b, int a_size,
 			t_array **instructions);
 int			partition_b(t_stack *a, t_stack *b, int b_size,
 			t_array **instructions);
-void		sort_a(t_stack *a, t_stack *b, int a_size, t_array **instructions);
-void		sort_top(t_stack *stack, int count, int a, t_array **instructions);
 
-int			stack_max(t_stack *stack, int size);
-int			stack_min(t_stack *stack, int size);
+void		stack_merge_sort(t_stack *a, t_stack *b, t_array **instructions);
+void		merge_sort_a(t_stack *a, t_stack *b, int a_size,
+			t_array **instructions);
+void		merge_sort_b(t_stack *a, t_stack *b, int b_size,
+			t_array **instructions);
+void		sort_stack(t_stack *stack, int size, int a,
+			t_array **instructions);
+void		rotate_to_bottom(t_stack *stack, int size, int a,
+			t_array **instructions);
+
 int			stack_is_ordered(t_stack *stack, int ascending);
 int			stack_top_is_ordered(t_stack *stack, int size, int ascending);
 

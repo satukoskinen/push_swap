@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_sort_three.c                                 :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:45:21 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 22:28:14 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:41:09 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "push_swap.h"
-#include "libft.h"
 
 static void	sort_a_three(t_stack *stack, t_array **instructions)
 {
@@ -77,14 +76,10 @@ t_array **instructions)
 {
 	if (size <= 1)
 		return ;
-	else if (size == 2 && ((a && *(stack->top) > *(stack->top - 1))
-		|| (!a && *(stack->top) < *(stack->top - 1))))
-	{
-		if (a)
-			sa(stack, instructions);
-		else
-			sb(stack, instructions);
-	}
+	else if (size == 2 && a && *(stack->top) > *(stack->top - 1))
+		sa(stack, instructions);
+	else if (size == 2 && !a && *(stack->top) < *(stack->top - 1))
+		sb(stack, instructions);
 	else if (stack_size(stack) == 3 && a)
 		sort_a_three(stack, instructions);
 	else if (stack_size(stack) == 3 && !a)
