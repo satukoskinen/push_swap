@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:48:47 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/28 11:02:06 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/01 10:15:19 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 # include "stack.h"
 # include "array.h"
 
+# define VERBOSE_UNCOLOURED 1
+# define VERBOSE_COLOURED 2
+
 t_stack		*read_arguments(int argc, char **argv);
 int			get_checker_instructions(t_stack *a, t_stack *b, int verbose);
 int			stack_is_ordered(t_stack *stack, int ascending);
-void		print_stacks(t_stack *a, t_stack *b, char *instruction);
+void		print_stacks(t_stack *a, t_stack *b, int verbose, char *instruction);
 
 void		sa(t_stack *a, t_array **arr);
 void		sb(t_stack *b, t_array **arr);

@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 20:50:21 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/29 15:25:59 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/01 10:31:24 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			get_checker_instructions(t_stack *a, t_stack *b, int verbose)
 		execute_instruction(ret, a, b);
 		ft_strdel(&input);
 		if (verbose)
-			print_stacks(a, b, instructions[ret]);
+			print_stacks(a, b, verbose, instructions[ret]);
 	}
 	if (ret != 0)
 	{

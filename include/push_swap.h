@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:49:19 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 19:59:59 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/01 10:15:26 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		rotate_to_bottom(t_stack *stack, int size, int a,
 			t_array **instructions);
 int			stack_is_ordered(t_stack *stack, int ascending);
 int			stack_top_is_ordered(t_stack *stack, int size, int ascending);
-void		print_stacks(t_stack *a, t_stack *b, char *instruction);
+void		print_stacks(t_stack *a, t_stack *b, int verbose, char *instruction);
 
 void		print_instructions(t_array *arr);
 void		optimize_instructions(t_array *arr);
