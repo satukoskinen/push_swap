@@ -36,12 +36,13 @@ generate_random_input () {
 rm -rf test_logs
 mkdir test_logs
 
+sum=0
 for (( i=0; i<$repeat; i++ ))
 do
 #	test_args="test_args_${args_no}_${i}"
 #	generate_random_input > $test_args
 	log_file="test_logs/test_log_${args_no}_${i}"
-	test_args=$(generate_random_input)
+	test_args=$(generate_shuffled_input)
 	echo $test_args >> $log_file
 	./push_swap $test_args > instructions 2>error
 	cat instructions >> $log_file
@@ -67,11 +68,13 @@ do
 	grep "OK" output > ok
 	if [ -s ok ]
 	then
-		printf "OK:"
-		./push_swap $test_args | wc -l > count
-		cat count >> $log_file
-		cat count
+		count=$( cat instructions | wc -l )
+		printf "$count\n" >> $log_file
+		printf "OK: $count\n"
+		sum=$( echo $sum + $count | bc )
 	fi
 	rm -f error output ok count instructions $test_args
 done
+average=$(( $sum / $repeat ))
+printf "sum: $sum average: $average\n"
 
