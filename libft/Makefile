@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 13:58:06 by skoskine          #+#    #+#              #
-#    Updated: 2021/03/29 19:37:53 by skoskine         ###   ########.fr        #
+#    Updated: 2021/04/01 11:24:12 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -137,7 +137,7 @@ PRINTF_SRC = $(addprefix printf/src/, \
 )
 
 CC = gcc
-CFLAGS = -c -Wall -Wextra -Werror -g
+CFLAGS = -c -Wall -Wextra -Werror #-fsanitize=address -g
 CPPFLAGS = -I . -I printf/include
 
 .PHONY: all re clean fclean
