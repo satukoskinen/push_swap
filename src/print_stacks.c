@@ -6,11 +6,11 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 20:23:01 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/29 14:45:06 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/01 10:35:10 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "checker.h"
 #include "libft.h"
 
 void		print_rotate_coloured(t_stack *a, t_stack *b, int i,
@@ -116,7 +116,7 @@ void		print_uncoloured(t_stack *a, t_stack *b, int i)
 	ft_printf("_____ _____\n  a     b\n\n");
 }
 
-void		print_stacks(t_stack *a, t_stack *b, char *instruction)
+void		print_stacks(t_stack *a, t_stack *b, int verbose, char *instruction)
 {
 	int	i;
 
@@ -124,7 +124,7 @@ void		print_stacks(t_stack *a, t_stack *b, char *instruction)
 		i = a->count;
 	else
 		i = b->count;
-	if (instruction != NULL)
+	if (instruction != NULL && verbose == VERBOSE_COLOURED)
 	{
 		ft_printf("\nexec \x1b[31m%s\x1b[0m:\n\n", instruction);
 		if (instruction[0] == 'p')
@@ -136,7 +136,10 @@ void		print_stacks(t_stack *a, t_stack *b, char *instruction)
 	}
 	else
 	{
-		ft_printf("start:\n\n");
+		if (instruction == NULL)
+			ft_printf("start:\n\n");
+		else
+			ft_printf("\nexec %s\n\n", instruction);
 		print_uncoloured(a, b, i);
 	}
 }

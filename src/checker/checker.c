@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:29 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/01 10:29:27 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/01 10:43:51 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static int	check_flags(int *argc, char ***argv)
 	int	ret;
 
 	ret = 0;
-	if (!ft_strcmp((*argv)[*argc - 1], "-v") || !ft_strcmp((*argv)[*argc - 1], "-c"))
+	if (!ft_strcmp((*argv)[*argc - 1], "-v")
+		|| !ft_strcmp((*argv)[*argc - 1], "-c"))
 	{
 		if ((*argv)[*argc - 1][1] == 'c')
 			ret = VERBOSE_COLOURED;
