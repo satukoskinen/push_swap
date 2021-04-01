@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:49:19 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/01 10:39:57 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/01 10:58:23 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 t_stack		*read_arguments(int argc, char **argv);
 
-void		stack_sort_three(t_stack *stack, int size, int a,
+void		sort_three(t_stack *stack, int size, int a,
 			t_array **instructions);
 void		sort_top(t_stack *stack, int count, int a, t_array **instructions);
 void		sort_a_top_three(t_stack *stack, t_array **instructions);
@@ -35,8 +35,6 @@ void		stack_merge_sort(t_stack *a, t_stack *b, t_array **instructions);
 void		merge_sort_a(t_stack *a, t_stack *b, int a_size,
 			t_array **instructions);
 void		merge_sort_b(t_stack *a, t_stack *b, int b_size,
-			t_array **instructions);
-void		sort_three(t_stack *stack, int size, int a,
 			t_array **instructions);
 void		rotate_to_bottom(t_stack *stack, int size, int a,
 			t_array **instructions);

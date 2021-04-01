@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 14:09:13 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 19:58:47 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/01 10:58:43 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	quick_sort_b(t_stack *a, t_stack *b, int b_size, t_array **instructions)
 	if (b_size > 3)
 		quick_sort_b(a, b, b_size, instructions);
 	else
-		stack_sort_three(b, b_size, 0, instructions);
+		sort_three(b, b_size, 0, instructions);
 	if (a_size > 3)
 		quick_sort_a(a, b, a_size, instructions);
 	else
-		stack_sort_three(a, a_size, 1, instructions);
+		sort_three(a, a_size, 1, instructions);
 	while (a_size-- > 0)
 		pb(a, b, instructions);
 }
@@ -45,11 +45,11 @@ void	quick_sort_a(t_stack *a, t_stack *b, int a_size, t_array **instructions)
 	if (a_size > 3)
 		quick_sort_a(a, b, a_size, instructions);
 	else
-		stack_sort_three(a, a_size, 1, instructions);
+		sort_three(a, a_size, 1, instructions);
 	if (b_size > 3)
 		quick_sort_b(a, b, b_size, instructions);
 	else
-		stack_sort_three(b, b_size, 0, instructions);
+		sort_three(b, b_size, 0, instructions);
 	while (b_size-- > 0)
 		pa(a, b, instructions);
 }

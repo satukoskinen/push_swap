@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:45:21 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 19:49:27 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/01 10:58:01 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	sort_b_three(t_stack *stack, t_array **instructions)
 	}
 }
 
-void		stack_sort_three(t_stack *stack, int size, int a,
+void		sort_three(t_stack *stack, int size, int a,
 t_array **instructions)
 {
 	if (size <= 1)
@@ -79,12 +79,12 @@ t_array **instructions)
 		sa(stack, instructions);
 	else if (size == 2 && !a && *(stack->top) < *(stack->top - 1))
 		sb(stack, instructions);
-	else if (stack_size(stack) == 3 && a)
+	else if (size == 3 && stack_size(stack) == 3 && a)
 		sort_a_three(stack, instructions);
-	else if (stack_size(stack) == 3 && !a)
+	else if (size == 3 && stack_size(stack) == 3 && !a)
 		sort_b_three(stack, instructions);
-	else if (stack_size(stack) > 3 && a)
+	else if (size == 3 && stack_size(stack) > 3 && a)
 		sort_a_top_three(stack, instructions);
-	else if (stack_size(stack) > 3 && !a)
+	else if (size == 3 && stack_size(stack) > 3 && !a)
 		sort_b_top_three(stack, instructions);
 }
