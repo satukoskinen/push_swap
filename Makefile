@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/20 11:01:30 by skoskine          #+#    #+#              #
-#    Updated: 2021/04/01 11:25:00 by skoskine         ###   ########.fr        #
+#    Updated: 2021/04/02 15:42:24 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ PUSH_SWAP_SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) \
 	sort_three.c \
 	print_instructions.c \
 	optimize_instructions.c \
+	optimize_rotations.c \
 )
 
 CHECKER_SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) \
@@ -94,9 +95,9 @@ $(CHECKER): $(OBJ_DIR) $(CHECKER_OBJ) $(LIBFT)
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) -c -o $@ $< $(CPPFLAGS)
 
-$(CHECKER_SRC): include/checker.h include/stack.h
+$(CHECKER_SRC): include/checker.h include/stack.h include/array.h
 
-$(PUSH_SWAP_SRC): include/push_swap.h include/stack.h
+$(PUSH_SWAP_SRC): include/push_swap.h include/stack.h include/array.h
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)stack $(OBJ_DIR)array $(OBJ_DIR)push_swap $(OBJ_DIR)checker

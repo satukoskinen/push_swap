@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:49:19 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/01 10:58:23 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/02 15:52:50 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "stack.h"
 # include "array.h"
+
+# define OPTIMIZE_ROTATIONS 1
 
 t_stack		*read_arguments(int argc, char **argv);
 
@@ -43,7 +45,8 @@ int			stack_top_is_ordered(t_stack *stack, int size, int ascending);
 void		print_stacks(t_stack *a, t_stack *b, int verbose, char *instr);
 
 void		print_instructions(t_array *arr);
-void		optimize_instructions(t_array *arr);
+void		optimize_instructions(t_array *arr, int stack_size);
+void		check_rotations(t_array *arr, int a_size);
 
 void		sa(t_stack *a, t_array **arr);
 void		sb(t_stack *b, t_array **arr);

@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 11:09:37 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/01 10:58:31 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/01 19:37:59 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,17 @@ int				main(int argc, char **argv)
 	if (!init_stacks(&a, &b, argc, argv))
 		return (error("Error\n"));
 	instructions = sort_stack(a, b);
-	stack_del(&a);
-	stack_del(&b);
 	if (instructions == NULL)
+	{
+		stack_del(&a);
+		stack_del(&b);
 		return (error("Error\n"));
+	}
 	if (instructions->size > 1)
-		optimize_instructions(instructions);
+		optimize_instructions(instructions, stack_size(a));
 	print_instructions(instructions);
 	array_del(&instructions);
+	stack_del(&a);
+	stack_del(&b);
 	return (0);
 }

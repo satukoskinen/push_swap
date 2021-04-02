@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 20:23:01 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/01 10:35:10 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/01 13:08:18 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,60 +16,57 @@
 void		print_rotate_coloured(t_stack *a, t_stack *b, int i,
 char *instruction)
 {
-	int	colour_a;
-	int	colour_b;
+	int	col_a;
+	int	col_b;
 
-	colour_a = (instruction[1] == 'b' || instruction[2] == 'b') ? 0 : 1;
-	colour_b = (instruction[1] == 'a' || instruction[2] == 'a') ? 0 : 1;
+	col_a = (instruction[1] == 'b' || instruction[2] == 'b') ? 0 : 1;
+	col_b = (instruction[1] == 'a' || instruction[2] == 'a') ? 0 : 1;
 	while (--i >= 0)
 	{
-		if (a->count < i + 1 && !colour_b)
-			ft_printf("      % 5d\n", b->arr[i]);
-		else if (a->count < i + 1 && colour_b)
-			ft_printf("      \x1b[31m% 5d\x1b[0m\n", b->arr[i]);
-		else if (b->count < i + 1 && !colour_a)
-			ft_printf("% 5d\n", a->arr[i]);
-		else if (b->count < i + 1 && colour_a)
-			ft_printf("\x1b[31m% 5d\x1b[0m\n", a->arr[i]);
-		else if (colour_a && !colour_b)
-			ft_printf("\x1b[31m% 5d\x1b[0m % 5d\n", a->arr[i], b->arr[i]);
-		else if (!colour_a && colour_b)
-			ft_printf("% 5d \x1b[31m% 5d\x1b[0m\n", a->arr[i], b->arr[i]);
+		if (a->count < i + 1 && !col_b)
+			ft_printf("        % 7d\n", b->arr[i]);
+		else if (a->count < i + 1 && col_b)
+			ft_printf("        \x1b[31m% 7d\x1b[0m\n", b->arr[i]);
+		else if (b->count < i + 1 && !col_a)
+			ft_printf("% 7d\n", a->arr[i]);
+		else if (b->count < i + 1 && col_a)
+			ft_printf("\x1b[31m% 7d\x1b[0m\n", a->arr[i]);
+		else if (col_a && !col_b)
+			ft_printf("\x1b[31m% 7d\x1b[0m % 7d\n", a->arr[i], b->arr[i]);
+		else if (!col_a && col_b)
+			ft_printf("% 7d \x1b[31m% 7d\x1b[0m\n", a->arr[i], b->arr[i]);
 		else
-			ft_printf("\x1b[31m% 5d\x1b[0m \x1b[31m% 5d\x1b[0m\n",
+			ft_printf("\x1b[31m% 7d\x1b[0m \x1b[31m% 7d\x1b[0m\n",
 			a->arr[i], b->arr[i]);
 	}
-	ft_printf("_____ _____\n  a     b\n\n\n");
+	ft_printf("________ ________\n    a        b\n\n\n");
 }
 
 void		print_swap_coloured(t_stack *a, t_stack *b, int i,
 char *instruction)
 {
-	int	sa;
+	int	col_a;
+	int	col_b;
 
-	sa = (instruction[1] == 'a') ? 1 : 0;
+	col_a = (instruction[1] == 'b') ? 0 : 1;
+	col_b = (instruction[1] == 'a') ? 0 : 1;
 	while (i)
 	{
-		if (a->count < i && ((b->count != i && b->count != i + 1) || sa))
-			ft_printf("      % 5d\n", b->arr[i - 1]);
-		else if (a->count < i && ((b->count == i || b->count == i + 1)) && !sa)
-			ft_printf("      \x1b[31m% 5d\x1b[0m\n", b->arr[i - 1]);
-		else if (b->count < i && ((a->count != i && a->count != i + 1) || !sa))
-			ft_printf("% 5d\n", a->arr[i - 1]);
-		else if (b->count < i && (a->count == i || a->count == i + 1) && sa)
-			ft_printf("\x1b[31m% 5d\x1b[0m\n", a->arr[i - 1]);
-		else if ((a->count == i || a->count == i + 1) && sa)
-			ft_printf("\x1b[31m% 5d\x1b[0m % 5d\n",
-			a->arr[i - 1], b->arr[i - 1]);
-		else if ((b->count == i || b->count == i + 1) && !sa)
-			ft_printf("% 5d \x1b[31m% 5d\x1b[0m\n",
-			a->arr[i - 1], b->arr[i - 1]);
-		else
-			ft_printf("% 5d % 5d\n",
-			a->arr[i - 1], b->arr[i - 1]);
+		if (a->count < i)
+			ft_printf("       ");
+		else if ((a->count != i && a->count != i + 1) || !col_a)
+			ft_printf("% 7d", a->arr[i - 1]);
+		else if ((a->count == i || a->count == i + 1) && col_a)
+			ft_printf("\x1b[31m% 7d\x1b[0m", a->arr[i - 1]);
+		if (b->count < i)
+			ft_printf("\n");
+		else if ((b->count != i && b->count != i + 1) || !col_b)
+			ft_printf("% 7d\n", b->arr[i - 1]);
+		else if ((b->count == i || b->count == i + 1) && col_b)
+			ft_printf("\x1b[31m% 7d\x1b[0m\n", b->arr[i - 1]);
 		i--;
 	}
-	ft_printf("_____ _____\n  a     b\n\n\n");
+	ft_printf("________ ________\n    a        b\n\n\n");
 }
 
 void		print_push_coloured(t_stack *a, t_stack *b, int i,
@@ -81,24 +78,24 @@ char *instruction)
 	while (i)
 	{
 		if (a->count < i && (b->count != i || pa))
-			ft_printf("      % 5d\n", b->arr[i - 1]);
+			ft_printf("        % 7d\n", b->arr[i - 1]);
 		else if (a->count < i && b->count == i && !pa)
-			ft_printf("      \x1b[31m% 5d\x1b[0m\n", b->arr[i - 1]);
+			ft_printf("        \x1b[31m% 7d\x1b[0m\n", b->arr[i - 1]);
 		else if (b->count < i && (a->count != i || !pa))
-			ft_printf("% 5d\n", a->arr[i - 1]);
+			ft_printf("% 7d\n", a->arr[i - 1]);
 		else if (b->count < i && a->count == i && pa)
-			ft_printf("\x1b[31m% 5d\x1b[0m\n", a->arr[i - 1]);
+			ft_printf("\x1b[31m% 7d\x1b[0m\n", a->arr[i - 1]);
 		else if (a->count == i && pa)
-			ft_printf("\x1b[31m% 5d\x1b[0m % 5d\n",
+			ft_printf("\x1b[31m% 7d\x1b[0m % 7d\n",
 			a->arr[i - 1], b->arr[i - 1]);
 		else if (b->count == i && !pa)
-			ft_printf("% 5d \x1b[31m% 5d\x1b[0m\n",
+			ft_printf("% 7d \x1b[31m% 7d\x1b[0m\n",
 			a->arr[i - 1], b->arr[i - 1]);
 		else
-			ft_printf("% 5d % 5d\n", a->arr[i - 1], b->arr[i - 1]);
+			ft_printf("% 7d % 7d\n", a->arr[i - 1], b->arr[i - 1]);
 		i--;
 	}
-	ft_printf("_____ _____\n  a     b\n\n\n");
+	ft_printf("________ ________\n    a        b\n\n\n");
 }
 
 void		print_uncoloured(t_stack *a, t_stack *b, int i)
@@ -106,14 +103,14 @@ void		print_uncoloured(t_stack *a, t_stack *b, int i)
 	while (i)
 	{
 		if (a->count < i)
-			ft_printf("      % 5d\n", b->arr[i - 1]);
+			ft_printf("        % 7d\n", b->arr[i - 1]);
 		else if (b->count < i)
-			ft_printf("% 5d\n", a->arr[i - 1]);
+			ft_printf("% 7d\n", a->arr[i - 1]);
 		else
-			ft_printf("% 5d % 5d\n", a->arr[i - 1], b->arr[i - 1]);
+			ft_printf("% 7d % 7d\n", a->arr[i - 1], b->arr[i - 1]);
 		i--;
 	}
-	ft_printf("_____ _____\n  a     b\n\n");
+	ft_printf("________ ________\n    a        b\n\n");
 }
 
 void		print_stacks(t_stack *a, t_stack *b, int verbose, char *instruction)
