@@ -25,7 +25,7 @@ generate_shuffled_input () {
 
 generate_random_input () {
 	local start=0
-	local end=10000
+	local end=100000
 	local i
 	declare -a array
 
@@ -42,7 +42,7 @@ do
 #	test_args="test_args_${args_no}_${i}"
 #	generate_random_input > $test_args
 	log_file="test_logs/test_log_${args_no}_${i}"
-	test_args=$(generate_shuffled_input)
+	test_args=$(generate_random_input)
 	echo $test_args >> $log_file
 	./push_swap $test_args > instructions 2>error
 	cat instructions >> $log_file
@@ -77,4 +77,3 @@ do
 done
 average=$(( $sum / $repeat ))
 printf "sum: $sum average: $average\n"
-
