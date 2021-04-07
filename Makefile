@@ -6,18 +6,19 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/20 11:01:30 by skoskine          #+#    #+#              #
-#    Updated: 2021/04/02 15:42:24 by skoskine         ###   ########.fr        #
+#    Updated: 2021/04/07 12:33:50 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CHECKER = checker
 
-SRC_DIR = src/
-OBJ_DIR = obj/
-HEADER_DIR = include/
+SRC_DIR = src
+OBJ_DIR = obj
+HEADER_DIR = include
+DEP_DIR = .deps
 
-STACK_SRC = $(addprefix $(SRC_DIR)stack/, \
+STACK_SRC = $(addprefix $(SRC_DIR)/stack/, \
 	stack_del.c \
 	stack_left_rotate.c \
 	stack_new.c \
@@ -30,7 +31,7 @@ STACK_SRC = $(addprefix $(SRC_DIR)stack/, \
 	stack_swap.c \
 )
 
-ARR_SRC = $(addprefix $(SRC_DIR)array/, \
+ARR_SRC = $(addprefix $(SRC_DIR)/array/, \
 	array_add.c \
 	array_del.c \
 	array_get.c \
@@ -42,7 +43,7 @@ ARR_SRC = $(addprefix $(SRC_DIR)array/, \
 	array_size.c \
 )
 
-COMMON_SRC = $(addprefix $(SRC_DIR), \
+COMMON_SRC = $(addprefix $(SRC_DIR)/common/, \
 	read_arguments.c \
 	instructions_a.c \
 	instructions_b.c \
@@ -51,8 +52,7 @@ COMMON_SRC = $(addprefix $(SRC_DIR), \
 	print_stacks.c \
 )
 
-PUSH_SWAP_SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) \
-	$(addprefix $(SRC_DIR)push_swap/, \
+PUSH_SWAP_SRC = $(addprefix $(SRC_DIR)/push_swap/, \
 	push_swap.c \
 	bubble_sort.c \
 	quick_sort.c \
@@ -66,15 +66,17 @@ PUSH_SWAP_SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) \
 	optimize_rotations.c \
 )
 
-CHECKER_SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) \
-	$(addprefix $(SRC_DIR)checker/, \
+CHECKER_SRC = $(addprefix $(SRC_DIR)/checker/, \
 	checker.c \
 	checker_instructions.c \
 )
 
-PUSH_SWAP_OBJ = $(subst $(SRC_DIR), $(OBJ_DIR), $(PUSH_SWAP_SRC:.c=.o))
+PUSH_SWAP_SRC_ALL = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) $(PUSH_SWAP_SRC)
+CHECKER_SRC_ALL = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) $(CHECKER_SRC)
+SRC = $(STACK_SRC) $(ARR_SRC) $(COMMON_SRC) $(PUSH_SWAP_SRC) $(CHECKER_SRC)
 
-CHECKER_OBJ = $(subst $(SRC_DIR), $(OBJ_DIR), $(CHECKER_SRC:.c=.o))
+PUSH_SWAP_OBJ = $(subst $(SRC_DIR), $(OBJ_DIR), $(PUSH_SWAP_SRC_ALL:.c=.o))
+CHECKER_OBJ = $(subst $(SRC_DIR), $(OBJ_DIR), $(CHECKER_SRC_ALL:.c=.o))
 
 LIBFT = libft/libft.a
 
@@ -83,31 +85,34 @@ CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 CPPFLAGS = -I libft -I include
 LDLIBS = -lft
 LDFLAGS = -L libft #-fsanitize=address
+DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
+
+COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -c
 
 all: $(NAME) $(CHECKER)
 
-$(NAME): $(OBJ_DIR) $(PUSH_SWAP_OBJ) $(LIBFT)
+$(NAME): $(PUSH_SWAP_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $(PUSH_SWAP_OBJ) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
-$(CHECKER): $(OBJ_DIR) $(CHECKER_OBJ) $(LIBFT)
+$(CHECKER): $(CHECKER_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $(CHECKER_OBJ) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@$(CC) $(CFLAGS) -c -o $@ $< $(CPPFLAGS)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEP_DIR)/%.d | $(DEP_DIR) $(OBJ_DIR)
+	$(COMPILE.c) -o $@ $<
 
-$(CHECKER_SRC): include/checker.h include/stack.h include/array.h
+$(DEP_DIR): ; mkdir -p $@/stack $@/array $@/push_swap $@/checker $@/common
 
-$(PUSH_SWAP_SRC): include/push_swap.h include/stack.h include/array.h
+$(OBJ_DIR): ; mkdir -p $@/stack $@/array $@/push_swap $@/checker $@/common
 
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)stack $(OBJ_DIR)array $(OBJ_DIR)push_swap $(OBJ_DIR)checker
+DEPFILES = $(subst $(SRC_DIR), $(DEP_DIR), $(SRC:.c=.d))
+$(DEPFILES):
 
 $(LIBFT):
 	$(MAKE) -C libft
 
 clean:
 	@$(MAKE) -C libft clean
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR) $(DEP_DIR)
 
 fclean: clean
 	@$(MAKE) -C libft fclean
@@ -116,3 +121,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+include $(wildcard $(DEPFILES))
