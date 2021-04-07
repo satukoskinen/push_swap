@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/20 11:01:30 by skoskine          #+#    #+#              #
-#    Updated: 2021/04/07 12:33:50 by skoskine         ###   ########.fr        #
+#    Updated: 2021/04/07 14:07:16 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ CHECKER = checker
 
 SRC_DIR = src
 OBJ_DIR = obj
-HEADER_DIR = include
 DEP_DIR = .deps
 
 STACK_SRC = $(addprefix $(SRC_DIR)/stack/, \
@@ -82,7 +81,8 @@ LIBFT = libft/libft.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
-CPPFLAGS = -I libft -I include
+CPPFLAGS = -I libft -I $(SRC_DIR)/array -I $(SRC_DIR)/checker \
+	-I $(SRC_DIR)/common -I $(SRC_DIR)/push_swap -I $(SRC_DIR)/stack
 LDLIBS = -lft
 LDFLAGS = -L libft #-fsanitize=address
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
@@ -92,17 +92,17 @@ COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -c
 all: $(NAME) $(CHECKER)
 
 $(NAME): $(PUSH_SWAP_OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(PUSH_SWAP_OBJ) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+	@$(CC) $(CFLAGS) -o $@ $(PUSH_SWAP_OBJ) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
 $(CHECKER): $(CHECKER_OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(CHECKER_OBJ) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+	@$(CC) $(CFLAGS) -o $@ $(CHECKER_OBJ) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEP_DIR)/%.d | $(DEP_DIR) $(OBJ_DIR)
-	$(COMPILE.c) -o $@ $<
+	@$(COMPILE.c) -o $@ $<
 
-$(DEP_DIR): ; mkdir -p $@/stack $@/array $@/push_swap $@/checker $@/common
+$(DEP_DIR): ; @mkdir -p $@/stack $@/array $@/push_swap $@/checker $@/common
 
-$(OBJ_DIR): ; mkdir -p $@/stack $@/array $@/push_swap $@/checker $@/common
+$(OBJ_DIR): ; @mkdir -p $@/stack $@/array $@/push_swap $@/checker $@/common
 
 DEPFILES = $(subst $(SRC_DIR), $(DEP_DIR), $(SRC:.c=.d))
 $(DEPFILES):
