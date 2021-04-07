@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 20:50:21 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/01 10:31:24 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/07 12:56:25 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,16 @@ static int	get_next_instruction(char **dst)
 {
 	char	buf[5];
 	int		ret;
-	int		i;
 
-	i = 0;
-	while (i < 4)
+	ret = read(0, &buf, 4);
+	if (ret == 0 || ret == -1)
+		return (ret);
+	if (buf[ret - 1] != '\n')
 	{
-		ret = read(0, &buf[i], 1);
-		if (ret == 0 && i == 0)
-			return (0);
-		if (ret == -1 || buf[i] == '\n')
-			break ;
-		i++;
-	}
-	if (ret == -1 || i < 2 || i == 4)
+		get_next_line(0, dst);
 		return (-1);
-	buf[i] = '\0';
+	}
+	buf[ret - 1] = '\0';
 	*dst = ft_strdup(buf);
 	if (*dst == NULL)
 		return (-1);
