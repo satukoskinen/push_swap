@@ -5,7 +5,7 @@ then
 	args_no=$1
 	repeat=$2
 else
-	printf "usage: $0 args_no repetitions\n"
+	printf "usage: $0 [args_no] [repetitions]\n"
 	exit 1
 fi
 
